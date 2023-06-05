@@ -123,6 +123,8 @@
           <configuration>
             <archive>
               <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>bin/</classpathPrefix>
                 <mainClass>com.example.DemoTransformation</mainClass>
               </manifest>
             </archive>

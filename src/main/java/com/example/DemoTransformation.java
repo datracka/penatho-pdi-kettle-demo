@@ -15,42 +15,27 @@ public class DemoTransformation {
 
     public static DemoTransformation instance;
 
-    public static void main(String[] args) {
-        // Kettle Environment must always be initialized first when using PDI
-        // It bootstraps the PDI engine by loading settings, appropriate plugins etc.
-        try {
-            KettleEnvironment.init();
-        } catch (KettleException e) {
-            e.printStackTrace();
-            return;
-        }
+    public static void main(String[] args) throws KettleException {
 
-        // Create an instance of this demo class for convenience
+        KettleEnvironment.init();
+
         instance = new DemoTransformation();
 
-        // run a transformation from the file system
-        /*
-         * Trans trans =
-         * instance.runTransformationFromFileSystem("etl/csv-european-to-json.ktr");
-         * 
-         * // retrieve logging appender
-         * LoggingBuffer appender = KettleLogStore.getAppender();
-         * // retrieve logging lines for job
-         * String logText = appender.getBuffer(trans.getLogChannelId(),
-         * false).toString();
-         * 
-         * // report on logged lines
-         * System.out.println(
-         * "************************************************************************************************"
-         * );
-         * System.out.
-         * println("LOG REPORT: Transformation generated the following log lines:\n");
-         * System.out.println(logText);
-         * System.out.println("END OF LOG REPORT");
-         * System.out.println(
-         * "************************************************************************************************"
-         * );
-         */
+        // Trans trans =
+        // instance.runTransformationFromFileSystem("etl/csv-european-to-json.ktr");
+        //
+        // LoggingBuffer appender = KettleLogStore.getAppender();
+        // String logText = appender.getBuffer(trans.getLogChannelId(),
+        // false).toString();
+        // System.out.println(
+        // "************************************************************************************************");
+        // System.out.println("LOG REPORT: Transformation generated the following log
+        // lines:\n");
+        // System.out.println(logText);
+        // System.out.println("END OF LOG REPORT");
+        // System.out.println(
+        // "************************************************************************************************");
+
     }
 
     /**
@@ -134,4 +119,5 @@ public class DemoTransformation {
             return null;
         }
     }
+
 }
