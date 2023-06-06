@@ -1,5 +1,9 @@
 package com.example;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import org.apache.commons.lang.RandomStringUtils;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleException;
@@ -20,21 +24,33 @@ public class DemoTransformation {
         KettleEnvironment.init();
 
         instance = new DemoTransformation();
+        System.out.println(System.getProperty("user.home"));
 
-        // Trans trans =
-        // instance.runTransformationFromFileSystem("etl/csv-european-to-json.ktr");
-        //
-        // LoggingBuffer appender = KettleLogStore.getAppender();
-        // String logText = appender.getBuffer(trans.getLogChannelId(),
-        // false).toString();
-        // System.out.println(
-        // "************************************************************************************************");
-        // System.out.println("LOG REPORT: Transformation generated the following log
-        // lines:\n");
-        // System.out.println(logText);
-        // System.out.println("END OF LOG REPORT");
-        // System.out.println(
-        // "************************************************************************************************");
+        try {
+            File myObj = new File("/Users/vicensfayos/Projects/demo/etl/csv-european-to-json.ktr");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        Trans trans = instance
+                .runTransformationFromFileSystem("/Users/vicensfayos/Projects/demo/etl/csv-european-to-json.ktr");
+        LoggingBuffer appender = KettleLogStore.getAppender();
+        String logText = appender.getBuffer(trans.getLogChannelId(),
+                false).toString();
+        System.out.println(
+                "************************************************************************************************");
+        System.out.println("LOG REPORT: Transformation generated the following log lines:\n");
+        System.out.println(logText);
+        System.out.println("END OF LOG REPORT");
+        System.out.println(
+                "************************************************************************************************");
 
     }
 
@@ -93,9 +109,10 @@ public class DemoTransformation {
             Trans transformation = new Trans(transMeta);
 
             // adjust the log level
-            transformation.setLogLevel(LogLevel.MINIMAL);
+            transformation.setLogLevel(LogLevel.DETAILED);
 
             System.out.println("\nStarting transformation");
+            System.out.println(transformation.toString());
 
             // starting the transformation, which will execute asynchronously
             transformation.execute(new String[0]);

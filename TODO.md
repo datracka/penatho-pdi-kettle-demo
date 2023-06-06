@@ -2,9 +2,10 @@
 
 - [x] Add dependencies and hello world app in java (jar)
 - [x] Using pentah pdi kettle create a very simple ktr
-- [ ] Embed this ktr following the sample code provided by them
+- [x] Embed this ktr following the sample code provided by them
 - [ ] Run the project
-- [ ] Add JAVA 20
+- [x] Add JAVA 20
+- [ ] Add external libraries being managed by maven
 
 ## observations
 
@@ -21,3 +22,9 @@ embedding DPI in a java application https://help.hitachivantara.com/Documentatio
 # Proper Repo (!)https://community.hitachivantara.com/discussion/publicnexuspentahoorg-unavailable
 
 https://repo.orl.eng.hitachivantara.com/artifactory/pnt-mvn
+
+
+## Jar only with all dependency
+
+./mvnw clean compile assembly:single     
+
